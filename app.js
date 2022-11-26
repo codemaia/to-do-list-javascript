@@ -37,3 +37,5 @@ todosContainer.addEventListener('click', event => {
 
 
 
+//filter to-do
+
