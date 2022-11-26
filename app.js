@@ -3,7 +3,8 @@ const formAddTodo = document.querySelector('.form-add-todo');
 const todosContainer = document.querySelector('.todos-container');
 const formSearchInput = document.querySelector('.form-search input');
 
-const dataTodosContainer = document.querySelector('[data-todos]');
+const dataTodosContainer = document.querySelectorAll('[data-todos]');
+
 
 
 
@@ -29,6 +30,7 @@ formAddTodo.addEventListener('submit', event => {
 
 
 //remove to-do
+
 todosContainer.addEventListener('click', event => {
     const clickedElement = event.target;
     
