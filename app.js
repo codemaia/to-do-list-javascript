@@ -44,14 +44,14 @@ formSearchInput.addEventListener('input', event => {
     Array.from(todosContainer.children)
         .filter(todo => !todo.textContent.toLowerCase().includes(inputValue))
         .forEach(todo => {
-        todo.classList.remove('d-flex');
-        todo.classList.add('hidden');
+            todo.classList.remove('d-flex');
+            todo.classList.add('hidden');
     });
     Array.from(todosContainer.children)
         .filter(todo => todo.textContent.toLowerCase().includes(inputValue))
         .forEach(todo => {
-        todo.classList.remove('hidden');
-        todo.classList.add('d-flex');
+            todo.classList.remove('hidden');
+            todo.classList.add('d-flex');
     });
     
 });
