@@ -3,6 +3,9 @@ const formAddTodo = document.querySelector('.form-add-todo');
 const todosContainer = document.querySelector('.todos-container');
 const formSearchInput = document.querySelector('.form-search input');
 
+const dataTodosContainer = document.querySelector('[data-todos]');
+
+
 
 //add to-do
 formAddTodo.addEventListener('submit', event => {
