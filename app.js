@@ -11,7 +11,7 @@ const removeToDo = (element) => {
 
     if (valueDatasetClicked) {
         
-        document.querySelector(`[data-todo="${element.dataset.trash}"]`).remove();
+        document.querySelector(`[data-todo="${valueDatasetClicked}"]`).remove();
     
     }
     
