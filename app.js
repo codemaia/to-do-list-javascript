@@ -3,9 +3,19 @@ const formAddTodo = document.querySelector('.form-add-todo');
 const todosContainer = document.querySelector('.todos-container');
 const formSearchInput = document.querySelector('.form-search input');
 
-const dataTodosContainer = document.querySelectorAll('[data-todos]');
 
 
+const removeToDo = (element) => {
+
+    const valueDatasetClicked = element.dataset.trash;    
+
+    if (valueDatasetClicked) {
+        
+        document.querySelector(`[data-todo="${element.dataset.trash}"]`).remove();
+    
+    }
+    
+}
 
 
 //add to-do
@@ -16,9 +26,9 @@ formAddTodo.addEventListener('submit', event => {
 
     if (inputValue) {
         todosContainer.innerHTML += `
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="${inputValue}">
                 <span>${inputValue}</span>
-                <i class="far fa-trash-alt delete"></i>
+                <i class="far fa-trash-alt delete" data-trash="${inputValue}"></i>
             </li>
         `
 
@@ -28,15 +38,13 @@ formAddTodo.addEventListener('submit', event => {
 });
 
 
-
 //remove to-do
-
 todosContainer.addEventListener('click', event => {
+
     const clickedElement = event.target;
-    
-    if (Array.from(clickedElement.classList).includes('delete')) {
-        clickedElement.parentElement.remove();
-    };
+
+    removeToDo(clickedElement);
+
 
 });
 
