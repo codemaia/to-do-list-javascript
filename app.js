@@ -5,15 +5,16 @@ const formSearchInput = document.querySelector('.form-search input');
 
 
 
-const addToDo = value => {
+const addToDo = inputValue => {
 
-    if (value) {
+    if (inputValue.length) {
         todosContainer.innerHTML += `
-            <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="${value}">
-                <span>${value}</span>
-                <i class="far fa-trash-alt delete" data-trash="${value}"></i>
+            <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="${inputValue}">
+                <span>${inputValue}</span>
+                <i class="far fa-trash-alt delete" data-trash="${inputValue}"></i>
             </li>
         `
+        event.target.reset();
     }
 
 };
@@ -44,7 +45,7 @@ formAddTodo.addEventListener('submit', event => {
 
     addToDo(inputValue);
 
-    event.target.reset();
+    
     
 });
 
