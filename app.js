@@ -65,48 +65,36 @@ todosContainer.addEventListener('click', event => {
 
 
 //filter to-do
-const filterToDo = (element, value) => {
-    return element.textContent.toLowerCase().includes(value);
+
+
+const hideTodos = (todos, inputValue) => {
+    todos
+        .filter(todo => !todo.textContent.toLowerCase().includes(inputValue))
+        .forEach(todo => {
+    
+            todo.classList.remove('d-flex');
+            todo.classList.add('hidden');
+    });
+
 };
 
 
-const enableOrDisableToDo = (element, callback, value) => {
+const showTodos = (todos, inputValue) => {
+    todos
+        .filter(todo => todo.textContent.toLowerCase().includes(inputValue))
+        .forEach(todo => {        
+            todo.classList.remove('hidden');
+            todo.classList.add('d-flex');
+    });
 
-    if(!callback(element, value)) {
-        element.classList.remove('d-flex');
-        element.classList.add('hidden');
-
-    } else {
-        element.classList.remove('hidden');
-        element.classList.add('d-flex');
-
-    }    
-
-    
-}
-
-
-
+};
 
 formSearchInput.addEventListener('input', event => {
     const inputValue = event.target.value.toLowerCase().trim();
+    const todos = Array.from(todosContainer.children);
 
-    Array.from(todosContainer.children)
-        .filter(todo => !filterToDo(todo, inputValue))
-        .forEach(todo => {
-           enableOrDisableToDo(todo, filterToDo, inputValue);
-
-            // todo.classList.remove('d-flex');
-            // todo.classList.add('hidden');
-    });
-
-    Array.from(todosContainer.children)
-        .filter(todo => filterToDo(todo, inputValue))
-        .forEach(todo => {
-            enableOrDisableToDo(todo, filterToDo, inputValue)
-            // todo.classList.remove('hidden');
-            // todo.classList.add('d-flex');
-    });
-    // debugger    
+    hideTodos(todos, inputValue);
+    showTodos(todos, inputValue);
+    
     
 });
