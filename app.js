@@ -67,11 +67,18 @@ todosContainer.addEventListener('click', event => {
 //filter to-do
 
 
+const filterTodos = (todos, inputValue, returnMatchedTodos) => {
+    return todos
+        .filter(todo => {
+            const matchedTodos = todo.textContent.toLowerCase().includes(inputValue);
+            return returnMatchedTodos ? matchedTodos : !matchedTodos //bollean
+        })
+}
+
+
 const hideTodos = (todos, inputValue) => {
-    todos
-        .filter(todo => !todo.textContent.toLowerCase().includes(inputValue))
+    filterTodos(todos, inputValue, false)
         .forEach(todo => {
-    
             todo.classList.remove('d-flex');
             todo.classList.add('hidden');
     });
@@ -80,8 +87,7 @@ const hideTodos = (todos, inputValue) => {
 
 
 const showTodos = (todos, inputValue) => {
-    todos
-        .filter(todo => todo.textContent.toLowerCase().includes(inputValue))
+    filterTodos(todos, inputValue, true)
         .forEach(todo => {        
             todo.classList.remove('hidden');
             todo.classList.add('d-flex');
