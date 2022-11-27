@@ -36,6 +36,39 @@ const removeToDo = element => {
 
 
 
+const filterTodos = (todos, inputValue, returnMatchedTodos) => {
+    return todos
+        .filter(todo => {
+            const matchedTodos = todo.textContent.toLowerCase().includes(inputValue);
+            return returnMatchedTodos ? matchedTodos : !matchedTodos //bollean
+        })
+}
+
+
+const addStyleTodos = (todos, add, remove) => {
+    todos
+    .forEach(todo => {
+        todo.classList.remove(remove);
+        todo.classList.add(add);
+});
+}
+
+
+const hideTodos = (todos, inputValue) => {
+    const todosToHide = filterTodos(todos, inputValue, false)
+    addStyleTodos(todosToHide, 'hidden', 'd-flex');
+
+};
+
+
+const showTodos = (todos, inputValue) => {
+    const todosToShow =  filterTodos(todos, inputValue, true)
+        addStyleTodos(todosToShow, 'd-flex', 'hidden')
+
+};
+
+
+
 
 //add to-do
 formAddTodo.addEventListener('submit', event => {
@@ -62,38 +95,7 @@ todosContainer.addEventListener('click', event => {
 
 
 
-
-
 //filter to-do
-
-
-const filterTodos = (todos, inputValue, returnMatchedTodos) => {
-    return todos
-        .filter(todo => {
-            const matchedTodos = todo.textContent.toLowerCase().includes(inputValue);
-            return returnMatchedTodos ? matchedTodos : !matchedTodos //bollean
-        })
-}
-
-
-const hideTodos = (todos, inputValue) => {
-    filterTodos(todos, inputValue, false)
-        .forEach(todo => {
-            todo.classList.remove('d-flex');
-            todo.classList.add('hidden');
-    });
-
-};
-
-
-const showTodos = (todos, inputValue) => {
-    filterTodos(todos, inputValue, true)
-        .forEach(todo => {        
-            todo.classList.remove('hidden');
-            todo.classList.add('d-flex');
-    });
-
-};
 
 formSearchInput.addEventListener('input', event => {
     const inputValue = event.target.value.toLowerCase().trim();
